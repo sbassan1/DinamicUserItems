@@ -1,83 +1,81 @@
-
+import { useClickOutside } from 'stimulus-use';
 
 export class DropDownMenu {
-
     constructor(title, list) {
         this.title = title;
-        this.list = list; // List of objects for each link of the menu {title: string , link : string} 
+        this.list = list; // List of {title: string, link: string}
     }
-
 }
 
-
 export class DropDownMenuUI {
-
-    constructor(menu){
+    constructor(menu) {
         this.menu = menu;
         this.elements = {};
     }
 
     render() {
 
-        const menuContainer = document.createElement('button');
+        const menuContainer = document.createElement('div');
         menuContainer.textContent = this.menu.title;
         menuContainer.className = 'container-btn';
 
         const listOfLinks = document.createElement('ul');
-        listOfLinks.style.display = "none";
+        listOfLinks.style.display = 'none'; // Initially hidden
         listOfLinks.className = 'dropdown-ul';
 
         this.menu.list.forEach(elementLink => {
-            
             const linkContainer = document.createElement('li');
-            linkContainer.className = "dropdown-li"
+            linkContainer.className = 'dropdown-li';
             const linkElement = document.createElement('a');
-            linkElement.textContent = elementLink.text;
+            linkElement.textContent = elementLink.title;
             linkElement.href = elementLink.link;
 
             linkContainer.append(linkElement);
             listOfLinks.append(linkContainer);
-
         });
 
-        this.elements = {menuContainer, listOfLinks};
+        this.elements = { menuContainer, listOfLinks };
 
-        return menuContainer;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'dropdown-menu-wrapper';
+        wrapper.append(menuContainer, listOfLinks);
+
+        return wrapper;
     }
-
 }
-
-/*
 
 export class DropDownMenuManager {
 
     constructor(menu, ui) {
         this.menu = menu;
         this.ui = ui;
-        this.eventListeners();  
-        this.visible = true;   
-    }   
+        this.visible = false;
 
-    eventListeners(menu, ui) {
-
-        const {menuContainer,listOfLinks} = this.ui.elements;
-
-        menuContainer.addEventListener("click", () => {
-            
-            if (this.visible) {
-                this.visible = false
-                this.ui.menuContainer.style.display = "none";
-            }else{
-                this.visible = true;
-                this.ui.menuContainer.style.display = "none";
-            }            
-            
-        });
-
-
+        this.eventListeners();
     }
 
+    eventListeners() {
 
+        const { menuContainer, listOfLinks } = this.ui.elements;
+
+        menuContainer.addEventListener('click', () => this.toggleMenu());
+
+        document.addEventListener('click', (event) => {
+            if (!menuContainer.contains(event.target) && !listOfLinks.contains(event.target)) {
+                this.closeMenu();
+            }
+        });
+    }
+
+    toggleMenu() {
+        const { listOfLinks } = this.ui.elements;
+        this.visible = !this.visible;
+        listOfLinks.style.display = this.visible ? 'block' : 'none';
+    }
+
+    closeMenu() {
+        const { listOfLinks } = this.ui.elements;
+        this.visible = false;
+        listOfLinks.style.display = 'none';
+    }
 }
-
-*/
