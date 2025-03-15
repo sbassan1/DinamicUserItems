@@ -14,7 +14,7 @@ export class DropDownMenuUI {
   render() {
     const menuContainer = document.createElement("button");
     menuContainer.textContent = this.menu.title;
-    menuContainer.className = "container-btn";
+    menuContainer.className = "dropdown-container-btn";
 
     const listOfLinks = document.createElement("ul");
     listOfLinks.style.display = "none";

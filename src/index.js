@@ -3,6 +3,7 @@ import {
   DropDownMenuManager,
   DropDownMenuUI,
 } from "./dropdownmenu.js";
+
 import "./style.css";
 
 const myMenu = new DropDownMenu("DropDown Menu Name", [
