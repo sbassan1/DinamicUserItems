@@ -2,7 +2,7 @@
 export class DropDownMenu {
     constructor(title, list) {
         this.title = title;
-        this.list = list; // List of links {title: string, link: string}
+        this.list = list; // List of links {title: string, link: string} or {title: string, button: arrow function}
     }
 }
 
@@ -22,14 +22,32 @@ export class DropDownMenuUI {
         listOfLinks.style.display = 'none';
         listOfLinks.className = 'dropdown-ul';
 
+
+
         this.menu.list.forEach(element => {
+
             const linkContainer = document.createElement('li');
             linkContainer.className = 'dropdown-li';
-            const linkElement = document.createElement('a');
-            linkElement.textContent = element.title;
-            linkElement.href = element.link;
-            linkContainer.append(linkElement);
+
+            if("link" in element) {
+                const linkElement = document.createElement('a');
+                linkElement.textContent = element.title;
+                linkElement.href = element.link;    
+                linkContainer.append(linkElement);
+            }
+            else if("button" in element) {
+                const linkElement = document.createElement('div');
+                linkElement.textContent = element.title;
+                linkElement.addEventListener("click", element.button);
+                linkContainer.append(linkElement);
+            }else{
+                const linkElement = document.createElement('div');
+                linkElement.textContent = element.title + " /?Error, not link or btn";
+                linkContainer.append(linkElement);
+            }
+            
             listOfLinks.append(linkContainer);
+        
         });
 
         this.elements = { menuContainer, listOfLinks };

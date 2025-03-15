@@ -2,10 +2,10 @@ import {DropDownMenu , DropDownMenuManager, DropDownMenuUI} from './dropdownmenu
 import "./style.css"
 
 const myMenu = new DropDownMenu('DropDown Menu Name', [
-    { title: 'Home', link: '#' },
-    { title: 'About', link: '#' },
-    { title: 'Services', link: '#' },
-    { title: 'Contact', link: '#' }
+    { title: 'A link',         link: '#' },
+    { title: 'A button',       button: () => console.log("Button Pressed!!") },
+    { title: 'Another link',   link: '#' },
+    { title: 'test', testError: '#' }
 ]);
 
 const myMenuUI = new DropDownMenuUI(myMenu);
