@@ -2,6 +2,8 @@
 
 A simple drop-down menu JS package for personal use. Feel free to use it though! 🎉
 
+Link to the npm package: https://www.npmjs.com/package/sbassan1-dropdown-menu
+
 ## 🚀 Usage Example
 
 ```js
