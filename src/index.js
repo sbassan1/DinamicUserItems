@@ -1,7 +1,7 @@
 import {DropDownMenu , DropDownMenuManager, DropDownMenuUI} from './dropdownmenu.js'
 import "./style.css"
 
-const myMenu = new DropDownMenu('TEST OF THE DROPDOWN MENU', [
+const myMenu = new DropDownMenu('DropDown Menu Name', [
     { title: 'Home', link: '#' },
     { title: 'About', link: '#' },
     { title: 'Services', link: '#' },
