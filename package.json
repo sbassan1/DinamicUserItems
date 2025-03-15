@@ -20,5 +20,19 @@
   },
   "dependencies": {
     "stimulus-use": "^0.52.3"
-  }
+  },
+  "name": "simple-dropdown-menu",
+  "version": "1.0.0",
+  "description": "A simple JS package to make dropdown menus",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbassan1/dropdown-menu.git"
+  },
+  "author": "sbassan1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbassan1/dropdown-menu/issues"
+  },
+  "homepage": "https://github.com/sbassan1/dropdown-menu#readme"
 }
