@@ -1,9 +1,8 @@
-import { useClickOutside } from 'stimulus-use';
 
 export class DropDownMenu {
     constructor(title, list) {
         this.title = title;
-        this.list = list; // List of {title: string, link: string}
+        this.list = list; // List of links {title: string, link: string}
     }
 }
 
@@ -15,21 +14,20 @@ export class DropDownMenuUI {
 
     render() {
 
-        const menuContainer = document.createElement('div');
+        const menuContainer = document.createElement('button');
         menuContainer.textContent = this.menu.title;
         menuContainer.className = 'container-btn';
 
         const listOfLinks = document.createElement('ul');
-        listOfLinks.style.display = 'none'; // Initially hidden
+        listOfLinks.style.display = 'none';
         listOfLinks.className = 'dropdown-ul';
 
-        this.menu.list.forEach(elementLink => {
+        this.menu.list.forEach(element => {
             const linkContainer = document.createElement('li');
             linkContainer.className = 'dropdown-li';
             const linkElement = document.createElement('a');
-            linkElement.textContent = elementLink.title;
-            linkElement.href = elementLink.link;
-
+            linkElement.textContent = element.title;
+            linkElement.href = element.link;
             linkContainer.append(linkElement);
             listOfLinks.append(linkContainer);
         });
@@ -60,7 +58,7 @@ export class DropDownMenuManager {
 
         menuContainer.addEventListener('click', () => this.toggleMenu());
 
-        document.addEventListener('click', (event) => {
+        document.addEventListener('click', (event) => {  // To check if the user clicked outside the list and button
             if (!menuContainer.contains(event.target) && !listOfLinks.contains(event.target)) {
                 this.closeMenu();
             }
